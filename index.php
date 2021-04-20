@@ -1,5 +1,5 @@
 <?php
-$url = "https://covid19-brazil-api.now.sh/api/report/v1/brazil";
+$url = "https://covid19-brazil-api.vercel.app/api/report/v1/brazil/uf/df";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -213,31 +213,27 @@ $covid = json_decode(curl_exec($ch));
             <div class="texto fundogeral">
 
                 <h4>País.:</h4>
-                <p><?php echo"Brasil";?> </p>
+                <p><?php echo $covid->state; ?> </p>
             </div>
             <div class="texto fundogeral">
                 <h4>Casos.:</h4>
 
-                <p><?php echo (number_format($covid->data->cases, 2, '.','.'));?> </p>
+                <p><?php echo (number_format($covid->cases, 2, '.','.'));?> </p>
 
             </div>
-            <div class="texto fundoconfirmados">
-                <h4>Confirmados</h4>
-                <p><?php echo (number_format($covid->data->confirmed, 2, '.','.'));?></p>
-
-            </div>
+          
             <div class="texto fundmort">
                 <h4>Mortes</h4>
-                <p><?php echo (number_format($covid->data->deaths, 2, '.','.'));?></p>
+                <p><?php echo (number_format($covid->deaths, 2, '.','.'));?></p>
 
             </div>
             <div class="texto fundorecuperado">
                 <h4>Recuperados</h4>
-                <p><?php echo (number_format($covid->data->recovered, 2, '.','.'));?></p>
+                <p><?php echo (number_format($covid->refuses, 2, '.','.'));?></p>
             </div>
             <div class="texto fundogeral">
                 <h4>Atualização:</h4>
-                <p><?=date("d/m/yy", strtotime($covid->data->updated_at))?>
+                <p><?=date("d/m/yy", strtotime($covid->datetime))?>
 
             </div>
         <div>
